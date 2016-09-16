@@ -15,8 +15,12 @@ project(arduino_pong
 #print_board_list()
 #print_programmer_list()
 
-set(arduino_pong_SOURCES src/Rectangle.cpp)
-set(arduino_pong_HEADERS src/Rectangle.hpp)
+set(arduino_pong_SOURCES
+  src/Rectangle.cpp
+  src/Ball.cpp)
+set(arduino_pong_HEADERS
+  src/Rectangle.hpp
+  src/Ball.hpp)
 set(arduino_pong_MAIN src/main.cpp)
 
 if(ARDUINO_PONG_BUILD_ARDUINO)
