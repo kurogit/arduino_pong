@@ -45,6 +45,13 @@ else()
   target_compile_options(${PROJECT_NAME} PRIVATE -fno-exceptions)
 endif()
 
+# Enable loads of warnings
+target_compile_options(${PROJECT_NAME} PRIVATE
+  -Wall
+  -Wextra
+  -Wpedantic
+  -Wcast-align -Wcast-qual -Wctor-dtor-privacy -Wdisabled-optimization -Wformat=2 -Winit-self -Wlogical-op -Wmissing-declarations -Wmissing-include-dirs -Wnoexcept -Wold-style-cast -Woverloaded-virtual -Wredundant-decls -Wshadow -Wsign-conversion -Wsign-promo -Wstrict-null-sentinel -Wstrict-overflow=5 -Wswitch-default -Wundef -Werror -Wno-unused)
+
 # Setup include-what-you-use and clang-tidy for additional checks
 set_target_properties(${PROJECT_NAME}
   PROPERTIES
