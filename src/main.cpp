@@ -1,38 +1,28 @@
 #include <Arduino.h>
+#include <pins_arduino.h>
+
+#include "Game.hpp"
 
 void setup();
 
-void loop();
 
 int main()
 {
-	init();
+    init();
 
-	setup();
+    setup();
 
-	for(;;)
-	{
-		loop();
-	}
+    arduino_pong::Game game;
+
+    game.run();
 
     return 0;
 }
 
-
 void setup()
 {
-	Serial.begin(9600);
-	Serial.write("setup ");
+    Serial.begin(9600);
+    Serial.write("setup ");
 
-	pinMode(LED_BUILTIN, OUTPUT);
-}
-
-void loop()
-{
-	Serial.write("Setting LED to HIGH ");
-	digitalWrite(LED_BUILTIN, HIGH);
-	delay(2000);
-	Serial.write("Setting LED to LOW ");
-	digitalWrite(LED_BUILTIN, LOW);
-	delay(2000);
+    pinMode(LED_BUILTIN, OUTPUT);
 }
