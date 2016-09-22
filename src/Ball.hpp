@@ -17,9 +17,9 @@ public:
 	float angle() const;
 	float velocity() const;
 private:
-    Rectangle bounds_{0, 0, 4, 4};
-    float angle_ = 0.0f;
-    float velocity_ = 0.0f;
+    Rectangle bounds_;
+    float angle_;
+    float velocity_;
 };
 
 }  // namespace arduino_pong
