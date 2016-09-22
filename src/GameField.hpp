@@ -3,11 +3,13 @@
 namespace arduino_pong
 {
 
+class Renderer;
+
 class GameField
 {
 public:
     void update();
-    void render();
+    void render(Renderer& renderer);
 };
 
 }  // namespace arduino_pong

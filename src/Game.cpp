@@ -31,7 +31,7 @@ void Game::run()
 			lag -= MsPerUpdate;
         }
 
-        gameField_.render();
+        gameField_.render(renderer_);
     }
 }
 

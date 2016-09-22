@@ -1,6 +1,7 @@
 #pragma once
 
 #include "GameField.hpp"
+#include "Renderer.hpp"
 
 namespace arduino_pong
 {
@@ -13,6 +14,7 @@ public:
 
 private:
 	GameField gameField_;
+	Renderer renderer_;
 };
 
 }  // namespace arduino_pong

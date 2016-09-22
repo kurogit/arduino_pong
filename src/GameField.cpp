@@ -7,8 +7,9 @@ void GameField::update()
 {
 }
 
-void GameField::render()
+void GameField::render(Renderer& renderer)
 {
+	(void)renderer;
 }
 
 }  // namespace arduino_pong

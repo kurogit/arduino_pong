@@ -26,9 +26,11 @@ set(arduino_pong_SOURCES
   src/Paddle.cpp
   src/GameField.cpp)
 set(arduino_pong_ARDUINO_HEADERS
-  src/Game.hpp)
+  src/Game.hpp
+  sr/Renderer.hpp)
 set(arduino_pong_ARDUINO_SOURCES
-  src/Game.cpp)
+  src/Game.cpp
+  src/Renderer.cpp)
 set(arduino_pong_ARDUINO_MAIN src/main.cpp)
 
 if(ARDUINO_PONG_BUILD_ARDUINO)
