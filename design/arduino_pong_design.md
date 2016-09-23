@@ -133,9 +133,7 @@ Ball and Paddle are then defined as follows:
 
 ![Class diagram Ball](source/figures/gen/uml_ball.png)
 
-``` cpp
-using Paddle = Rectangle;
-```
+![Paddle diagram Ball](source/figures/gen/uml_paddle.png)
 
 ### CollisionProcessor
 

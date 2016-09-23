@@ -192,7 +192,7 @@ Ball and Paddle are then defined as follows:
 \uml(source/figures/gen/uml_ball)(Class diagram Ball)
 ~~~~
 class Ball {
-    -rectangle_ : Rectangle
+    -bounds_ : Rectangle
     -angle_ : float
     -velocity_ : float
     --
@@ -200,8 +200,13 @@ class Ball {
 }
 ~~~~
 
-~~~~{.cpp}
-using Paddle = Rectangle;
+\uml(source/figures/gen/uml_paddle)(Paddle diagram Ball)
+~~~~
+class Paddle {
+    -bounds_ : Rectangle
+    --
+    getters and setters
+}
 ~~~~
 
 [Game Loop]: <http://gameprogrammingpatterns.com/game-loop.html>
