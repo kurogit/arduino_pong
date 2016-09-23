@@ -18,24 +18,24 @@ project(arduino_pong
 set(arduino_pong_HEADERS
   src/Rectangle.hpp
   src/Ball.hpp
-  src/Paddle.hpp
-  src/GameField.hpp)
+  src/Paddle.hpp)
 set(arduino_pong_SOURCES
   src/Rectangle.cpp
   src/Ball.cpp
-  src/Paddle.cpp
-  src/GameField.cpp)
+  src/Paddle.cpp)
 set(arduino_pong_ARDUINO_HEADERS
   src/Game.hpp
-  sr/Renderer.hpp)
+  src/Renderer.hpp
+  src/GameField.hpp)
 set(arduino_pong_ARDUINO_SOURCES
   src/Game.cpp
-  src/Renderer.cpp)
+  src/Renderer.cpp
+  src/GameField.cpp)
 set(arduino_pong_ARDUINO_MAIN src/main.cpp)
 
 if(ARDUINO_PONG_BUILD_ARDUINO)
   generate_arduino_firmware(${PROJECT_NAME}
-    SRCS ${arduino_pong_SOURCES} ${arduino_pong_ARDUINO_SOURCES} ${arduino_pong_ARDUINO_MAIN}
+    SRCS ${arduino_pong_HEADERS} ${arduino_pong_SOURCES} ${arduino_pong_ARDUINO_HEADERS} ${arduino_pong_ARDUINO_SOURCES} ${arduino_pong_ARDUINO_MAIN}
     BOARD uno
     PORT /dev/ttyACM0
     SERIAL picocom @SERIAL_PORT@ -b 9600 -l)
