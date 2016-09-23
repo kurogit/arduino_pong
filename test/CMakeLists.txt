@@ -7,7 +7,8 @@ project(arduino_pong_test
 
 set(arduino_pong_test_SOURCES
   src/RectangleTest.cpp
-  src/BallTest.cpp)
+  src/BallTest.cpp
+  src/PaddleTest.cpp)
 
 # Get doctest
 file(DOWNLOAD "https://raw.githubusercontent.com/onqtam/doctest/master/doctest/doctest.h" "${CMAKE_CURRENT_BINARY_DIR}/doctest/doctest.h")
