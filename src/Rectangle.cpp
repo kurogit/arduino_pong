@@ -41,4 +41,17 @@ int Rectangle::height() const
     return height_;
 }
 
+bool operator==(const Rectangle& left, const Rectangle& right)
+{
+	if(&left == &right)
+		return true;
+
+	return (left.x() == right.x()) && (left.y() == right.y()) && (left.width() == right.width()) && (left.height() == right.height());
+}
+
+bool operator!=(const Rectangle& left, const Rectangle& right)
+{
+	return !(left == right);
+}
+
 }  // namespace arduino_pong

@@ -22,7 +22,7 @@ void Game::run()
         gameField_.render(renderer_);
 
         int32_t delayValue = start + MsPerUpdate - millis();
-        //Serial.println(delayValue);
+        Serial.println(delayValue);
         delay(delayValue < 0 ? 0 : delayValue);
     }
 }

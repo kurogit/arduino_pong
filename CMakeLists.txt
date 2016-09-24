@@ -18,11 +18,13 @@ project(arduino_pong
 set(arduino_pong_HEADERS
   src/Rectangle.hpp
   src/Ball.hpp
-  src/Paddle.hpp)
+  src/Paddle.hpp
+  src/GameState.hpp)
 set(arduino_pong_SOURCES
   src/Rectangle.cpp
   src/Ball.cpp
-  src/Paddle.cpp)
+  src/Paddle.cpp
+  src/GameState.cpp)
 set(arduino_pong_ARDUINO_HEADERS
   src/Game.hpp
   src/Renderer.hpp

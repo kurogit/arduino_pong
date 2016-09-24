@@ -1,7 +1,6 @@
 #pragma once
 
-#include "Ball.hpp"
-#include "Paddle.hpp"
+#include "GameState.hpp"
 #include "Input.hpp"
 
 namespace arduino_pong
@@ -12,14 +11,16 @@ class Renderer;
 class GameField
 {
 public:
-	GameField();
+    GameField();
 
     void update();
     void render(Renderer& renderer);
+
 private:
-	Input input_;
-	Ball ball_;
-	Paddle paddles_[2];
+    Input input_;
+	GameState state_;
+	GameState oldState_;
+	bool init_;
 };
 
 }  // namespace arduino_pong

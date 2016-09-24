@@ -6,21 +6,24 @@ namespace arduino_pong
 class Rectangle
 {
 public:
-	Rectangle(int x, int y, int width, int height);
+    Rectangle(int x, int y, int width, int height);
 
-	void setX(int newX);
-	void setY(int newY);
+    void setX(int newX);
+    void setY(int newY);
 
-	int x() const;
-	int y() const;
-	int width() const;
-	int height() const;
+    int x() const;
+    int y() const;
+    int width() const;
+    int height() const;
 
 private:
-	int x_ = 0;
-	int y_ = 0;
-	int width_ = 0;
-	int height_ = 0;
+    int x_ = 0;
+    int y_ = 0;
+    int width_ = 0;
+    int height_ = 0;
 };
+
+bool operator==(const Rectangle& left, const Rectangle& right);
+bool operator!=(const Rectangle& left, const Rectangle& right);
 
 }  // namespace arduino_pong

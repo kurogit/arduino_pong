@@ -22,8 +22,9 @@ namespace arduino_pong
 
 GameField::GameField()
     : input_{},
-      ball_{FieldCenter[0], FieldCenter[1]},
-      paddles_{{LeftPaddleXPosition, FieldCenter[1]}, {RightPaddleXPosition, FieldCenter[1]}}
+      state_{{FieldCenter[0], FieldCenter[1]}, {{LeftPaddleXPosition, FieldCenter[1]}, {RightPaddleXPosition, FieldCenter[1]}}},
+      oldState_{state_},
+      init_{false}
 {
 }
 
@@ -31,19 +32,38 @@ void GameField::update()
 {
     float leftInput = input_.getLeftPlayerInput();
 
-	int newYPos = MaxPaddleYPosition * leftInput;
+    int newYPos = MaxPaddleYPosition * leftInput;
 
-	paddles_[0].setYPos(newYPos);
+    oldState_ = state_;
+
+    state_.paddles_[1].setYPos(newYPos);
 }
 
 void GameField::render(Renderer& renderer)
 {
-	renderer.clear();
-    renderer.renderFieldLine();
+    if(!init_)
+    {
+        renderer.render(state_.ball_.bounds(), Renderer::Color::White);
+        renderer.render(state_.paddles_[0].bounds(), Renderer::Color::White);
+        renderer.render(state_.paddles_[1].bounds(), Renderer::Color::White);
+        init_ = true;
+    }
 
-    renderer.render(ball_.bounds());
-    renderer.render(paddles_[0].bounds());
-    renderer.render(paddles_[1].bounds());
+    if(oldState_.ball_.bounds() != state_.ball_.bounds())
+    {
+        renderer.render(oldState_.ball_.bounds(), Renderer::Color::Black);
+        renderer.render(state_.ball_.bounds(), Renderer::Color::White);
+    }
+    if(oldState_.paddles_[0].bounds() != state_.paddles_[0].bounds())
+    {
+        renderer.render(oldState_.paddles_[0].bounds(), Renderer::Color::Black);
+        renderer.render(state_.paddles_[0].bounds(), Renderer::Color::White);
+    }
+    if(oldState_.paddles_[1].bounds() != state_.paddles_[1].bounds())
+    {
+        renderer.render(oldState_.paddles_[1].bounds(), Renderer::Color::Black);
+        renderer.render(state_.paddles_[1].bounds(), Renderer::Color::White);
+    }
 }
 
 }  // namespace arduino_pong

@@ -9,6 +9,7 @@ constexpr int CSPin = 10;
 constexpr int DCPin = 9;
 constexpr int RESETPin = 8;
 
+
 }  // namespace
 
 namespace arduino_pong
@@ -19,24 +20,46 @@ Renderer::Renderer()
 {
     screen_.begin();
 
-	screen_.stroke(0, 0, 0);
-	screen_.fill(0, 0, 0);
-
+	setupColor(Color::White);
     clear();
+
+	renderFieldLine();
 }
 
 void Renderer::clear()
 {
-    screen_.background(255, 255, 255);
+    screen_.background(0, 0, 0);
 }
 
-void Renderer::render(const Rectangle& rect)
+void Renderer::render(const Rectangle& rect, Color color)
 {
-	screen_.rect(rect.x(), rect.y(), rect.width(), rect.height());
+	setupColor(color);
+    screen_.rect(rect.x(), rect.y(), rect.width(), rect.height());
 }
 
 void Renderer::renderFieldLine()
 {
+}
+
+void Renderer::setupColor(Color color)
+{
+    int value = 0;
+    switch(color)
+    {
+    case Renderer::Color::White:
+    {
+        value = 255;
+        break;
+    }
+    case Renderer::Color::Black:
+    {
+        value = 0;
+        break;
+    }
+    }
+
+    screen_.stroke(value, value, value);
+    screen_.fill(value, value, value);
 }
 
 }  // namespace arduino_pong
