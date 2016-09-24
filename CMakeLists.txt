@@ -26,11 +26,13 @@ set(arduino_pong_SOURCES
 set(arduino_pong_ARDUINO_HEADERS
   src/Game.hpp
   src/Renderer.hpp
-  src/GameField.hpp)
+  src/GameField.hpp
+  src/Input.hpp)
 set(arduino_pong_ARDUINO_SOURCES
   src/Game.cpp
   src/Renderer.cpp
-  src/GameField.cpp)
+  src/GameField.cpp
+  src/Input.cpp)
 set(arduino_pong_ARDUINO_MAIN src/main.cpp)
 
 if(ARDUINO_PONG_BUILD_ARDUINO)

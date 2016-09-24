@@ -2,6 +2,7 @@
 
 #include "Ball.hpp"
 #include "Paddle.hpp"
+#include "Input.hpp"
 
 namespace arduino_pong
 {
@@ -16,6 +17,7 @@ public:
     void update();
     void render(Renderer& renderer);
 private:
+	Input input_;
 	Ball ball_;
 	Paddle paddles_[2];
 };
