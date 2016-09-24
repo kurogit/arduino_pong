@@ -16,6 +16,8 @@ public:
 
     const Rectangle& bounds() const;
 
+    void setYPos(int newPos);
+
 private:
     Rectangle bounds_;
 };

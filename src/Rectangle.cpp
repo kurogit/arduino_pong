@@ -11,6 +11,16 @@ Rectangle::Rectangle(int x, int y, int width, int height)
 {
 }
 
+void Rectangle::setX(int newX)
+{
+	x_ = newX;
+}
+
+void Rectangle::setY(int newY)
+{
+	y_ = newY;
+}
+
 int Rectangle::x() const
 {
     return x_;

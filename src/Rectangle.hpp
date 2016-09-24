@@ -8,6 +8,9 @@ class Rectangle
 public:
 	Rectangle(int x, int y, int width, int height);
 
+	void setX(int newX);
+	void setY(int newY);
+
 	int x() const;
 	int y() const;
 	int width() const;

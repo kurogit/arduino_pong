@@ -15,4 +15,11 @@ TEST_CASE("Constructor and getters")
 	CHECK(bounds.y() == 2);
 	CHECK(bounds.width() == 6);
 	CHECK(bounds.height() == 20);
+
+	SUBCASE("setters")
+	{
+		paddle.setYPos(42);
+
+		CHECK(bounds.y() == 42);
+	}
 }

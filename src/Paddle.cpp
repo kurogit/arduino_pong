@@ -8,6 +8,11 @@ Paddle::Paddle(int x, int y)
 {
 }
 
+void Paddle::setYPos(int newPos)
+{
+	bounds_.setY(newPos);
+}
+
 const Rectangle& Paddle::bounds() const
 {
     return bounds_;
