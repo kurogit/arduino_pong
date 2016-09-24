@@ -5,7 +5,7 @@
 namespace
 {
 
-constexpr uint32_t MsPerUpdate = 16;
+constexpr uint32_t MsPerUpdate = 200;
 
 }  // namespace
 
@@ -14,24 +14,16 @@ namespace arduino_pong
 
 void Game::run()
 {
-
-    uint32_t previous = millis();
-    uint32_t lag = 0;
-
     while(true)
     {
-        uint32_t current = millis();
-        uint32_t elapsed = current - previous;
-        previous = current;
-        lag += elapsed;
+        uint32_t start = millis();
 
-        while(lag >= MsPerUpdate)
-        {
-            gameField_.update();
-			lag -= MsPerUpdate;
-        }
-
+        gameField_.update();
         gameField_.render(renderer_);
+
+        int32_t delayValue = start + MsPerUpdate - millis();
+        //Serial.println(delayValue);
+        delay(delayValue < 0 ? 0 : delayValue);
     }
 }
 

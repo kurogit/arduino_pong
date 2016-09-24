@@ -19,15 +19,15 @@ Renderer::Renderer()
 {
     screen_.begin();
 
-	screen_.stroke(255, 255, 255);
-	screen_.fill(255, 255, 255);
+	screen_.stroke(0, 0, 0);
+	screen_.fill(0, 0, 0);
 
     clear();
 }
 
 void Renderer::clear()
 {
-    screen_.background(0, 0, 0);
+    screen_.background(255, 255, 255);
 }
 
 void Renderer::render(const Rectangle& rect)
