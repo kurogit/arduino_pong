@@ -18,6 +18,9 @@ namespace arduino_pong
 Renderer::Renderer()
     : screen_{CSPin, DCPin, RESETPin}
 {
+	// build fix for arduino-cmake
+	SPI.begin();
+
     screen_.begin();
 
 	setupColor(Color::White);

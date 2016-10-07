@@ -25,7 +25,7 @@ public:
     void renderFieldLine();
 
 private:
-	void setupColor(Color color);
+    void setupColor(Color color);
 
     TFT screen_;
 };
