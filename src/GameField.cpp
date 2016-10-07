@@ -30,13 +30,16 @@ GameField::GameField()
 
 void GameField::update()
 {
-    float leftInput = input_.getLeftPlayerInput();
-
-    int newYPos = MaxPaddleYPosition * leftInput;
-
     oldState_ = state_;
 
+    float input = input_.getLeftPlayerInput();
+    int newYPos = MaxPaddleYPosition * input;
+	// The screen is actually upside down. left = 1, right = 0
     state_.paddles_[1].setYPos(newYPos);
+
+	input = input_.getRightPlayerInput();
+	newYPos = MaxPaddleYPosition * input;
+    state_.paddles_[0].setYPos(newYPos);
 }
 
 void GameField::render(Renderer& renderer)
