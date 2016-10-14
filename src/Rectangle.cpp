@@ -13,12 +13,12 @@ Rectangle::Rectangle(int x, int y, int width, int height)
 
 void Rectangle::setX(int newX)
 {
-	x_ = newX;
+    x_ = newX;
 }
 
 void Rectangle::setY(int newY)
 {
-	y_ = newY;
+    y_ = newY;
 }
 
 int Rectangle::x() const
@@ -43,15 +43,17 @@ int Rectangle::height() const
 
 bool operator==(const Rectangle& left, const Rectangle& right)
 {
-	if(&left == &right)
-		return true;
+    if(&left == &right)
+    {
+        return true;
+    }
 
-	return (left.x() == right.x()) && (left.y() == right.y()) && (left.width() == right.width()) && (left.height() == right.height());
+    return (left.x() == right.x()) && (left.y() == right.y()) && (left.width() == right.width()) && (left.height() == right.height());
 }
 
 bool operator!=(const Rectangle& left, const Rectangle& right)
 {
-	return !(left == right);
+    return !(left == right);
 }
 
 }  // namespace arduino_pong

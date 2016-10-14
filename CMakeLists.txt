@@ -72,6 +72,9 @@ target_compile_options(${PROJECT_NAME} PUBLIC -std=gnu++14)
 # disable rtti
 target_compile_options(${PROJECT_NAME} PRIVATE -fno-rtti)
 
+# Add a debug macro for conditional compilation
+target_compile_definitions(${PROJECT_NAME} PUBLIC $<$<CONFIG:Debug>:ARDUINO_PONG_DEBUG>)
+
 if(NOT ARDUINO_PONG_BUILD_ARDUINO)
   enable_testing()
   add_subdirectory(test)

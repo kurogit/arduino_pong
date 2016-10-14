@@ -22,6 +22,7 @@ public:
 
     void clear();
     void render(const Rectangle& rect, Color color);
+	void render(const char* text, int x, int y, Color color);
     void renderFieldLine();
 
 private:

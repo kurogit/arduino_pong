@@ -18,15 +18,15 @@ namespace arduino_pong
 Renderer::Renderer()
     : screen_{CSPin, DCPin, RESETPin}
 {
-	// build fix for arduino-cmake
-	SPI.begin();
+    // build fix for arduino-cmake
+    SPI.begin();
 
     screen_.begin();
 
-	setupColor(Color::White);
+    setupColor(Color::White);
     clear();
 
-	renderFieldLine();
+    renderFieldLine();
 }
 
 void Renderer::clear()
@@ -36,8 +36,14 @@ void Renderer::clear()
 
 void Renderer::render(const Rectangle& rect, Color color)
 {
-	setupColor(color);
+    setupColor(color);
     screen_.rect(rect.x(), rect.y(), rect.width(), rect.height());
+}
+
+void Renderer::render(const char* text, int x, int y, Color color)
+{
+    setupColor(color);
+    screen_.text(text, x, y);
 }
 
 void Renderer::renderFieldLine()

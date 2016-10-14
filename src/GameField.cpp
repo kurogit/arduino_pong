@@ -1,6 +1,7 @@
 #include "GameField.hpp"
 
 #include <Arduino.h>
+#include <stdio.h>
 
 #include "CollisionProcessor.hpp"
 #include "Renderer.hpp"
@@ -116,6 +117,18 @@ void GameField::render(Renderer& renderer)
     // Render origin for testing
     renderer.render(Rectangle{0, 0, 2, 2}, Renderer::Color::White);
 
+#ifdef ARDUINO_PONG_DEBUG
+    // Render some debug stuff
+    if(state_.ball_.velocity() != oldState_.ball_.velocity())
+    {
+        char buf[20]{};
+        // Turns out avr-libc cant printf floating point numbers
+        sprintf(static_cast<char*>(buf), "bs: %d", static_cast<int>(state_.ball_.velocity() * 10));
+
+        renderer.render(Rectangle{5, 0, 100, 5}, Renderer::Color::Black);
+        renderer.render(static_cast<char*>(buf), 5, 0, Renderer::Color::White);
+    }
+#endif
 }
 
 }  // namespace arduino_pong
