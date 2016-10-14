@@ -16,6 +16,11 @@ public:
 	const Rectangle& bounds() const;
 	float angle() const;
 	float velocity() const;
+
+	void setAngle(float newAngle);
+	void setVelocity(float newVelocity);
+	void setPosition(int x, int y);
+	void moveOneFrame();
 private:
     Rectangle bounds_;
     float angle_;
