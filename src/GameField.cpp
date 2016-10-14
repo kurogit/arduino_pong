@@ -56,6 +56,17 @@ void GameField::update()
     // Movement Ball
     ball.moveOneFrame();
 
+    // Check if ball is outside the field
+    if(!CollisionProcessor::checkCollision(Rectangle{0, 0, FieldWidth, FieldHeigt}, ball.bounds()))
+    {
+		const bool leftOut = ball.bounds().x() <= FieldCenter[0];
+
+        ball.setAngle(leftOut ? 0.0f : 180.0f);
+        ball.setVelocity(BallDefaultVelocity);
+		ball.setPosition(FieldCenter[0], FieldCenter[1]);
+		return;
+    }
+
     handleCollision(0);
     handleCollision(1);
 }
@@ -114,10 +125,10 @@ void GameField::render(Renderer& renderer)
         renderer.render(state_.paddles_[1].bounds(), Renderer::Color::White);
     }
 
+#ifdef ARDUINO_PONG_DEBUG
     // Render origin for testing
     renderer.render(Rectangle{0, 0, 2, 2}, Renderer::Color::White);
 
-#ifdef ARDUINO_PONG_DEBUG
     // Render some debug stuff
     if(state_.ball_.velocity() != oldState_.ball_.velocity())
     {
