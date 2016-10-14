@@ -17,6 +17,8 @@ public:
     void render(Renderer& renderer);
 
 private:
+	void handleCollision(int paddleNum);
+
     Input input_;
 	GameState state_;
 	GameState oldState_;
