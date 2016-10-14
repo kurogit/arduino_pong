@@ -19,12 +19,14 @@ set(arduino_pong_HEADERS
   src/Rectangle.hpp
   src/Ball.hpp
   src/Paddle.hpp
-  src/GameState.hpp)
+  src/GameState.hpp
+  src/CollisionProcessor.hpp)
 set(arduino_pong_SOURCES
   src/Rectangle.cpp
   src/Ball.cpp
   src/Paddle.cpp
-  src/GameState.cpp)
+  src/GameState.cpp
+  src/CollisionProcessor.cpp)
 set(arduino_pong_ARDUINO_HEADERS
   src/Game.hpp
   src/Renderer.hpp
