@@ -5,7 +5,7 @@
 namespace
 {
 
-constexpr uint32_t MsPerUpdate = 200;
+constexpr uint32_t MsPerUpdate = 30;
 
 }  // namespace
 
@@ -22,7 +22,11 @@ void Game::run()
         gameField_.render(renderer_);
 
         int32_t delayValue = start + MsPerUpdate - millis();
+
+#ifdef ARDUINO_PONG_DEBUG
         Serial.println(delayValue);
+#endif
+
         delay(delayValue < 0 ? 0 : delayValue);
     }
 }
