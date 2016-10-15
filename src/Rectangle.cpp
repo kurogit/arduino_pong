@@ -3,7 +3,7 @@
 namespace arduino_pong
 {
 
-Rectangle::Rectangle(int x, int y, int width, int height)
+Rectangle::Rectangle(float x, float y, int width, int height)
     : x_{x},
       y_{y},
       width_{width},
@@ -11,22 +11,22 @@ Rectangle::Rectangle(int x, int y, int width, int height)
 {
 }
 
-void Rectangle::setX(int newX)
+void Rectangle::setX(float newX)
 {
     x_ = newX;
 }
 
-void Rectangle::setY(int newY)
+void Rectangle::setY(float newY)
 {
     y_ = newY;
 }
 
-int Rectangle::x() const
+float Rectangle::x() const
 {
     return x_;
 }
 
-int Rectangle::y() const
+float Rectangle::y() const
 {
     return y_;
 }

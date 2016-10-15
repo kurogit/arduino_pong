@@ -2,6 +2,8 @@
 
 #include "Rectangle.hpp"
 
+#include <math.h>
+
 namespace
 {
 
@@ -37,7 +39,7 @@ void Renderer::clear()
 void Renderer::render(const Rectangle& rect, Color color)
 {
     setupColor(color);
-    screen_.rect(rect.x(), rect.y(), rect.width(), rect.height());
+    screen_.rect(round(rect.x()), round(rect.y()), rect.width(), rect.height());
 }
 
 void Renderer::render(const char* text, int x, int y, Color color)

@@ -11,7 +11,7 @@ public:
     static constexpr int Width = 4;
     static constexpr int Heigt = 4;
 public:
-    Ball(int x, int y);
+    Ball(float x, float y);
 
 	const Rectangle& bounds() const;
 	float angle() const;
@@ -19,7 +19,7 @@ public:
 
 	void setAngle(float newAngle);
 	void setVelocity(float newVelocity);
-	void setPosition(int x, int y);
+	void setPosition(float x, float y);
 	void moveOneFrame();
 private:
     Rectangle bounds_;

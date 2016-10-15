@@ -12,11 +12,11 @@ public:
     static constexpr int Height = 20;
 
 public:
-    Paddle(int x, int y);
+    Paddle(float x, float y);
 
     const Rectangle& bounds() const;
 
-    void setYPos(int newPos);
+    void setYPos(float newPos);
 
 private:
     Rectangle bounds_;

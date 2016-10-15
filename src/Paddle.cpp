@@ -3,12 +3,12 @@
 namespace arduino_pong
 {
 
-Paddle::Paddle(int x, int y)
+Paddle::Paddle(float x, float y)
     : bounds_{x, y, Paddle::Width, Paddle::Height}
 {
 }
 
-void Paddle::setYPos(int newPos)
+void Paddle::setYPos(float newPos)
 {
 	bounds_.setY(newPos);
 }

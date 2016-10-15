@@ -6,19 +6,19 @@ namespace arduino_pong
 class Rectangle
 {
 public:
-    Rectangle(int x, int y, int width, int height);
+    Rectangle(float x, float y, int width, int height);
 
-    void setX(int newX);
-    void setY(int newY);
+    void setX(float newX);
+    void setY(float newY);
 
-    int x() const;
-    int y() const;
+    float x() const;
+    float y() const;
     int width() const;
     int height() const;
 
 private:
-    int x_ = 0;
-    int y_ = 0;
+    float x_ = 0;
+    float y_ = 0;
     int width_ = 0;
     int height_ = 0;
 };

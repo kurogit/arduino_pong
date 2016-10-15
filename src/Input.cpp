@@ -35,7 +35,7 @@ float Input::getLeftPlayerInput() const
 
 float Input::getRightPlayerInput() const
 {
-	return processInput(InputPinRight);
+    return processInput(InputPinRight);
 }
 
 }  // namespace arduino_pong

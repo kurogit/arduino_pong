@@ -16,7 +16,7 @@ namespace arduino_pong
 {
 
 
-Ball::Ball(int x, int y)
+Ball::Ball(float x, float y)
     : bounds_{x, y, Ball::Width, Ball::Heigt},
       angle_{0.0f},
       velocity_{0.0f}
@@ -46,7 +46,7 @@ void Ball::setVelocity(float newVelocity)
 {
     velocity_ = newVelocity;
 }
-void Ball::setPosition(int x, int y)
+void Ball::setPosition(float x, float y)
 {
     bounds_.setX(x);
     bounds_.setY(y);

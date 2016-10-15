@@ -24,7 +24,7 @@ void Game::run()
         int32_t delayValue = start + MsPerUpdate - millis();
 
 #ifdef ARDUINO_PONG_DEBUG
-        Serial.println(delayValue);
+        //Serial.println(delayValue);
 #endif
 
         delay(delayValue < 0 ? 0 : delayValue);
