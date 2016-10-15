@@ -32,9 +32,16 @@ GameField::GameField()
       init_{false}
 {
     // Set initial ball speed and angle
+	reset();
+}
 
+void GameField::reset()
+{
     state_.ball_.setAngle(180.0f);
     state_.ball_.setVelocity(BallDefaultVelocity);
+	state_.ball_.setPosition(FieldCenter[0], FieldCenter[1]);
+
+	init_ = false;
 }
 
 void GameField::update()
@@ -103,6 +110,7 @@ void GameField::render(Renderer& renderer)
 {
     if(!init_)
     {
+		renderer.clear();
         renderer.render(state_.ball_.bounds(), Renderer::Color::White);
         renderer.render(state_.paddles_[0].bounds(), Renderer::Color::White);
         renderer.render(state_.paddles_[1].bounds(), Renderer::Color::White);

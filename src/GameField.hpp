@@ -15,14 +15,15 @@ public:
 
     void update();
     void render(Renderer& renderer);
+    void reset();
 
 private:
-	void handleCollision(int paddleNum);
+    void handleCollision(int paddleNum);
 
     Input input_;
-	GameState state_;
-	GameState oldState_;
-	bool init_;
+    GameState state_;
+    GameState oldState_;
+    bool init_;
 };
 
 }  // namespace arduino_pong
