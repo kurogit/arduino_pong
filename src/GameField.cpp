@@ -20,6 +20,7 @@ constexpr int MaxPaddleYPosition = FieldHeigt - arduino_pong::Paddle::Height;
 constexpr float BallDefaultVelocity = 1.0f;
 constexpr float BallVelocityStep = 0.5f;
 
+
 }  // namespace
 
 namespace arduino_pong
@@ -63,15 +64,26 @@ void GameField::update()
     // Movement Ball
     ball.moveOneFrame();
 
+    if(ball.bounds().y() < 0)
+    {
+        ball.setPosition(ball.bounds().x(), 1);
+        ball.setAngle(-ball.angle());
+    }
+    else if(ball.bounds().y() + Ball::Heigt >= FieldHeigt)
+    {
+        ball.setPosition(ball.bounds().x(), FieldHeigt - Ball::Heigt - 1);
+        ball.setAngle(-ball.angle());
+    }
+
     // Check if ball is outside the field
     if(!CollisionProcessor::checkCollision(Rectangle{0, 0, FieldWidth, FieldHeigt}, ball.bounds()))
     {
-		const bool leftOut = ball.bounds().x() <= FieldCenter[0];
+        const bool leftOut = ball.bounds().x() <= FieldCenter[0];
 
         ball.setAngle(leftOut ? 0.0f : 180.0f);
         ball.setVelocity(BallDefaultVelocity);
-		ball.setPosition(FieldCenter[0], FieldCenter[1]);
-		return;
+        ball.setPosition(FieldCenter[0], FieldCenter[1]);
+        return;
     }
 
     handleCollision(0);
