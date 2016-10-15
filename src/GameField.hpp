@@ -19,6 +19,9 @@ public:
 
 private:
     void handleCollision(int paddleNum);
+	void resetBall(float angle);
+
+	void renderCurrentPoints(Renderer& renderer);
 
     Input input_;
     GameState state_;

@@ -11,6 +11,8 @@ struct GameState
 {
 	Ball ball_;
 	Paddle paddles_[2];
+	int pointsLeft;
+	int pointsRight;
 };
 
 }  // namespace asm

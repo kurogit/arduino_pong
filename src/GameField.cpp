@@ -2,6 +2,7 @@
 
 #include <Arduino.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 #include "CollisionProcessor.hpp"
 #include "Renderer.hpp"
@@ -28,21 +29,29 @@ namespace arduino_pong
 
 GameField::GameField()
     : input_{},
-      state_{{FieldCenter[0], FieldCenter[1]}, {{LeftPaddleXPosition, FieldCenter[1]}, {RightPaddleXPosition, FieldCenter[1]}}},
+      state_{{FieldCenter[0], FieldCenter[1]}, {{LeftPaddleXPosition, FieldCenter[1]}, {RightPaddleXPosition, FieldCenter[1]}}, 0, 0},
       oldState_{state_},
       init_{false}
 {
     // Set initial ball speed and angle
-	reset();
+    reset();
 }
 
 void GameField::reset()
 {
-    state_.ball_.setAngle(180.0f);
-    state_.ball_.setVelocity(BallDefaultVelocity);
-	state_.ball_.setPosition(FieldCenter[0], FieldCenter[1]);
+    resetBall(180.0f);
 
-	init_ = false;
+    state_.pointsLeft = 0;
+    state_.pointsRight = 0;
+
+    init_ = false;
+}
+
+void GameField::resetBall(float angle)
+{
+    state_.ball_.setAngle(angle);
+    state_.ball_.setVelocity(BallDefaultVelocity);
+    state_.ball_.setPosition(FieldCenter[0], FieldCenter[1]);
 }
 
 void GameField::update()
@@ -74,16 +83,15 @@ void GameField::update()
         ball.setPosition(ball.bounds().x(), FieldHeigt - Ball::Heigt - 1);
         ball.setAngle(-ball.angle());
     }
-
-    // Check if ball is outside the field
-    if(!CollisionProcessor::checkCollision(Rectangle{0, 0, FieldWidth, FieldHeigt}, ball.bounds()))
+    else if(ball.bounds().x() <= 0)
     {
-        const bool leftOut = ball.bounds().x() <= FieldCenter[0];
-
-        ball.setAngle(leftOut ? 0.0f : 180.0f);
-        ball.setVelocity(BallDefaultVelocity);
-        ball.setPosition(FieldCenter[0], FieldCenter[1]);
-        return;
+        ++state_.pointsRight;
+        resetBall(0.0f);
+    }
+    else if(ball.bounds().x() >= FieldWidth)
+    {
+        ++state_.pointsLeft;
+        resetBall(180.0f);
     }
 
     handleCollision(0);
@@ -129,10 +137,13 @@ void GameField::render(Renderer& renderer)
 {
     if(!init_)
     {
-		renderer.clear();
+        renderer.clear();
         renderer.render(state_.ball_.bounds(), Renderer::Color::White);
         renderer.render(state_.paddles_[0].bounds(), Renderer::Color::White);
         renderer.render(state_.paddles_[1].bounds(), Renderer::Color::White);
+
+        renderCurrentPoints(renderer);
+
         init_ = true;
     }
 
@@ -151,7 +162,10 @@ void GameField::render(Renderer& renderer)
         renderer.render(oldState_.paddles_[1].bounds(), Renderer::Color::Black);
         renderer.render(state_.paddles_[1].bounds(), Renderer::Color::White);
     }
-
+    if(oldState_.pointsLeft != state_.pointsLeft || oldState_.pointsRight != state_.pointsRight)
+    {
+        renderCurrentPoints(renderer);
+    }
 #ifdef ARDUINO_PONG_DEBUG
     // Render origin for testing
     renderer.render(Rectangle{0, 0, 2, 2}, Renderer::Color::White);
@@ -176,6 +190,23 @@ void GameField::render(Renderer& renderer)
         renderer.render(static_cast<char*>(buf), 5, 10, Renderer::Color::White);
     }
 #endif
+}
+
+void GameField::renderCurrentPoints(Renderer& renderer)
+{
+    static constexpr auto MaxSize = 4;
+    static constexpr auto DistanceToCenter = 20;
+    static constexpr auto PointsLeftX = FieldCenter[0] - DistanceToCenter - MaxSize;
+    static constexpr auto PointsRightX = FieldCenter[0] + DistanceToCenter;
+    static constexpr auto PointsY = 20;
+
+    renderer.render({PointsLeftX, PointsY, PointsRightX + MaxSize - PointsLeftX + 1, 10}, Renderer::Color::Black);
+
+    char buf[MaxSize];
+    const char* textToRender = itoa(state_.pointsLeft, static_cast<char*>(buf), 10);
+    renderer.render(textToRender, PointsLeftX, PointsY, Renderer::Color::White);
+    textToRender = itoa(state_.pointsRight, static_cast<char*>(buf), 10);
+    renderer.render(textToRender, PointsRightX, PointsY, Renderer::Color::White);
 }
 
 }  // namespace arduino_pong
