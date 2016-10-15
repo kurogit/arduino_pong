@@ -82,11 +82,18 @@ void GameField::handleCollision(int paddleNum)
 {
     static constexpr auto LeftPaddleUpperRight = LeftPaddleXPosition + Paddle::Width;
     static constexpr auto MaxBallSpeed = 9.0f;
+    static constexpr auto MaxBallAngle = 55;
 
     Ball& ball = state_.ball_;
-    if(CollisionProcessor::checkCollision(ball.bounds(), state_.paddles_[paddleNum].bounds()))
+    Paddle& paddle = state_.paddles_[paddleNum];
+    if(CollisionProcessor::checkCollision(ball.bounds(), paddle.bounds()))
     {
-        ball.setAngle(180.0f - ball.angle());
+        const auto collisionY = ball.bounds().y() + Ball::Heigt / 2;
+        const auto relativeY = paddle.bounds().y() + (Paddle::Height / 2) - collisionY;
+        const float normalizedRelativeY = relativeY / (Paddle::Height / 2.0f);
+        const auto newAngle = normalizedRelativeY * MaxBallAngle;
+
+        ball.setAngle(paddleNum == 0 ? newAngle : 180.0f - newAngle);
 
         // Only increase ball speed if the maximum speed is not reached yet
         const float newBallSpeed = ball.velocity() + BallVelocityStep;
@@ -144,8 +151,17 @@ void GameField::render(Renderer& renderer)
         // Turns out avr-libc cant printf floating point numbers
         sprintf(static_cast<char*>(buf), "bs: %d", static_cast<int>(state_.ball_.velocity() * 10));
 
-        renderer.render(Rectangle{5, 0, 100, 5}, Renderer::Color::Black);
+        renderer.render(Rectangle{5, 0, 100, 10}, Renderer::Color::Black);
         renderer.render(static_cast<char*>(buf), 5, 0, Renderer::Color::White);
+    }
+    if(state_.ball_.angle() != oldState_.ball_.angle())
+    {
+        char buf[20]{};
+        // Turns out avr-libc cant printf floating point numbers
+        sprintf(static_cast<char*>(buf), "ba: %d", static_cast<int>(state_.ball_.angle() * 10));
+
+        renderer.render(Rectangle{5, 10, 100, 10}, Renderer::Color::Black);
+        renderer.render(static_cast<char*>(buf), 5, 10, Renderer::Color::White);
     }
 #endif
 }
