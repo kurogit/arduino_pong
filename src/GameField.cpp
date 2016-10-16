@@ -69,6 +69,7 @@ void GameField::update()
     // Movement Ball
     ball.moveOneFrame();
 
+	// Check ball collisions with the game field border
     if(ball.bounds().y() < 0)
     {
         ball.setPosition(ball.bounds().x(), 1);
@@ -107,7 +108,7 @@ void GameField::handleCollision(int paddleNum)
         const auto collisionY = ball.bounds().y() + Ball::Heigt / 2;
         const auto relativeY = paddle.bounds().y() + (Paddle::Height / 2) - collisionY;
         const float normalizedRelativeY = relativeY / (Paddle::Height / 2.0f);
-        const auto newAngle = normalizedRelativeY * MaxBallAngle;
+        const auto newAngle = 360.0f - normalizedRelativeY * MaxBallAngle;
 
         ball.setAngle(paddleNum == 0 ? newAngle : 180.0f - newAngle);
 
@@ -142,6 +143,8 @@ void GameField::render(Renderer& renderer)
 
         init_ = true;
     }
+
+	// Only render if changed. arduino and tft are not fast enough for redrawing every frame.
 
     if(oldState_.ball_.bounds() != state_.ball_.bounds())
     {
@@ -196,7 +199,7 @@ void GameField::renderCurrentPoints(Renderer& renderer)
     static constexpr auto PointsRightX = FieldCenter[0] + DistanceToCenter;
     static constexpr auto PointsY = 20;
 
-    renderer.render({PointsLeftX, PointsY, PointsRightX + MaxSize - PointsLeftX + 1, 10}, Renderer::Color::Black);
+    renderer.render({PointsLeftX, PointsY, PointsRightX + MaxSize*10 - PointsLeftX + 1, 10}, Renderer::Color::Black);
 
     char buf[MaxSize];
     const char* textToRender = itoa(state_.pointsLeft, static_cast<char*>(buf), 10);
