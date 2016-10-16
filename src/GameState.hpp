@@ -2,7 +2,6 @@
 
 #include "Ball.hpp"
 #include "Paddle.hpp"
-#include "Rectangle.hpp"
 
 namespace arduino_pong
 {

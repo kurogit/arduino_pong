@@ -24,10 +24,6 @@ float processInput(uint8_t pin)
 namespace arduino_pong
 {
 
-Input::Input()
-{
-}
-
 float Input::getLeftPlayerInput() const
 {
     return processInput(InputPinLeft);

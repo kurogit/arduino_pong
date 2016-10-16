@@ -1,9 +1,5 @@
 #include "GameField.hpp"
 
-#include <Arduino.h>
-#include <stdio.h>
-#include <stdlib.h>
-
 #include "CollisionProcessor.hpp"
 #include "Renderer.hpp"
 

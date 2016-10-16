@@ -2,8 +2,6 @@
 
 #include "Rectangle.hpp"
 
-#include <math.h>
-
 namespace
 {
 
