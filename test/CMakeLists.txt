@@ -1,3 +1,7 @@
+#
+# This file is part of https://github.com/kurogit/arduino_pong which is licensed under the MIT License.
+# Copyright 2016 Patrick Schwartz <kurogit@schwartzm.com>
+#
 cmake_minimum_required(VERSION 3.5)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
