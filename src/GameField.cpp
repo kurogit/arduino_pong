@@ -61,7 +61,7 @@ void GameField::update()
 
     // Movement Paddles
     float input = input_.getLeftPlayerInput();
-    int newYPos = MaxPaddleYPosition * input;
+    float newYPos = MaxPaddleYPosition * input;
     // The screen is actually upside down. left = 1, right = 0
     state_.paddles_[1].setYPos(newYPos);
 
@@ -74,7 +74,7 @@ void GameField::update()
     // Movement Ball
     ball.moveOneFrame();
 
-	// Check ball collisions with the game field border
+    // Check ball collisions with the game field border
     if(ball.bounds().y() < 0)
     {
         ball.setPosition(ball.bounds().x(), 1);
@@ -149,7 +149,7 @@ void GameField::render(Renderer& renderer)
         init_ = true;
     }
 
-	// Only render if changed. arduino and tft are not fast enough for redrawing every frame.
+    // Only render if changed. arduino and tft are not fast enough for redrawing every frame.
 
     if(oldState_.ball_.bounds() != state_.ball_.bounds())
     {
@@ -204,7 +204,7 @@ void GameField::renderCurrentPoints(Renderer& renderer)
     static constexpr auto PointsRightX = FieldCenter[0] + DistanceToCenter;
     static constexpr auto PointsY = 20;
 
-    renderer.render({PointsLeftX, PointsY, PointsRightX + MaxSize*10 - PointsLeftX + 1, 10}, Renderer::Color::Black);
+    renderer.render({PointsLeftX, PointsY, PointsRightX + MaxSize * 10 - PointsLeftX + 1, 10}, Renderer::Color::Black);
 
     char buf[MaxSize];
     const char* textToRender = itoa(state_.pointsLeft, static_cast<char*>(buf), 10);

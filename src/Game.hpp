@@ -18,8 +18,8 @@ public:
     void run();
 
 private:
-	GameField gameField_;
-	Renderer renderer_;
+    GameField gameField_;
+    Renderer renderer_;
 };
 
 }  // namespace arduino_pong

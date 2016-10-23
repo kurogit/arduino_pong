@@ -15,7 +15,7 @@ Paddle::Paddle(float x, float y)
 
 void Paddle::setYPos(float newPos)
 {
-	bounds_.setY(newPos);
+    bounds_.setY(newPos);
 }
 
 const Rectangle& Paddle::bounds() const

@@ -27,7 +27,5 @@ int main()
 void setup()
 {
     Serial.begin(9600);
-    Serial.write("setup ");
-
-    pinMode(LED_BUILTIN, OUTPUT);
+    Serial.println("setup");
 }

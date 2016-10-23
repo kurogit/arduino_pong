@@ -11,9 +11,9 @@
 
 namespace
 {
-constexpr auto degreeToRadians(float degree)
+constexpr float degreeToRadians(float degree)
 {
-    return (degree * M_PI) / 180.0f;
+    return (degree * static_cast<float>(M_PI)) / 180.0f;
 }
 }  // namespace
 
@@ -61,7 +61,10 @@ void Ball::moveOneFrame()
     const auto x = bounds_.x();
     const auto y = bounds_.y();
 
-    setPosition(x + velocity_ * cos(degreeToRadians(angle_)), y + velocity_ * sin(degreeToRadians(angle_)));
+    const float newX = x + velocity_ * static_cast<float>(cos(static_cast<double>(degreeToRadians(angle_))));
+    const float newY = y + velocity_ * static_cast<float>(sin(static_cast<double>(degreeToRadians(angle_))));
+
+    setPosition(newX, newY);
 }
 
 }  // namespace arduino_pong
