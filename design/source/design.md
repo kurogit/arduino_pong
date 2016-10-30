@@ -10,6 +10,10 @@ My project goals are the following:
 * Learn about programming for embedded hardware (Arduino)
 * Generally raise my programming experience
 
+This document is the initial design for the project. Some things might be different in the code then represented below.
+
+This project is licensed under the MIT License. See [LICENSE](LICENSE).
+
 [Arduino TFT]: <https://www.arduino.cc/en/Guide/TFT>
 
 ### Tools
