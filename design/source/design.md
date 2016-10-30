@@ -1,37 +1,6 @@
 ---
-title: Arduino Pong
+title: Arduino Pong Design
 ---
-
-## The Project
-In this project i am going to implement Pong from scratch for an Arduino Uno with an [Arduino TFT].
-
-My project goals are the following:
-
-* Learn about programming for embedded hardware (Arduino)
-* Generally raise my programming experience
-
-This document is the initial design for the project. Some things might be different in the code then represented below.
-
-This project is licensed under the MIT License. See [LICENSE](LICENSE).
-
-[Arduino TFT]: <https://www.arduino.cc/en/Guide/TFT>
-
-### Tools
-The following tools and libraries will be used in the project:
-
-* CMake with [Arduino CMake]
-* Arduino SDK and TFT library
-* [doctest] for unit tests
-
-Arduino CMake uses gcc-avr to compile the c++ code. This means that exceptions are disabled by default(-fno-exceptions).
-
-I additionally apply the following restrictions:
-
-* No use of RTTI (-fno-rtti). RTTI costs time and space. I don't plan to use any or much inheritance.
-* No dynamic memory allocation. While Arduino supports `operator new`{.cpp}, i will not use it.
-
-[Arduino CMake]: <https://github.com/queezythegreat/arduino-cmake>
-[doctest]: <https://github.com/onqtam/doctest>
 
 ## Pong
 \ditaa(source/figures/gen/pong_complete)(Pong)

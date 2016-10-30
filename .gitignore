@@ -125,5 +125,6 @@ CTestTestfile.cmake
 
 
 # My own stuff
-design/source/figures/gen
+design/source/figures/gen/*.dat
+design/source/figures/gen/*.gv
 build*

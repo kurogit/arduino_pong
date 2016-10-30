@@ -4,10 +4,10 @@ PANDOC=pandoc
 TMPDIR=/tmp
 BASEDIR=$(CURDIR)
 INPUTDIR=$(BASEDIR)/source
-OUTPUTDIR=$(BASEDIR)/..
+OUTPUTDIR=$(BASEDIR)
 
 MERGEDFILE=merged.md
-OUTPUTNAME=README.md
+OUTPUTNAME=arduino_pong_design.md
 
 .PHONY: all
 all: pandoc
